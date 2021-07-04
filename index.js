@@ -20,7 +20,8 @@ app.get('/', (req, res) => {
 
 app.get('/weather', (req, res) => {
     const cityname = req.query.cityname.toUpperCase();
-
+    if (cityname == 'undefined')
+        return res.redirect('/')
     const date = new Date();
     let day = date.getDay();
     let month = date.getMonth();
@@ -32,6 +33,18 @@ app.get('/weather', (req, res) => {
     day = dayArray[day];
     const monthArray = ['Jan', 'Feb', 'March', 'Apr', 'May', 'June', 'July', 'Aug', 'Sept', 'Oct', 'Nov', 'Dec'];
     month = monthArray[month];
+    hh = hh + 5;
+    mm = mm + 30;
+    /* For Heroku */
+    if (mm >= 60) {
+        mm = mm % 60;
+        hh = hh + 1;
+    }
+    if (hh >= 24) {
+        hh = hh % 24;
+    }
+    /*For Heroku*/
+
     if (hh > 12) {
         hh = hh % 12;
         shift = "PM";
@@ -60,26 +73,25 @@ app.get('/weather', (req, res) => {
             const country = response.body.sys.country;
             const temp = response.body.main.temp;
             const feels_like = response.body.main.feels_like;
-            res.render('weather.ejs', { weatherMain, weatherDesc, country, temp, feels_like, cityname, ndate })
+            // console.log(weatherMain)
+            let icon;
+            if (weatherMain == 'Sunny' || weatherMain == 'Clear') {
+                icon = 'images/sun.gif';
+            } else if (weatherMain == 'Clouds' || weatherMain == 'Cloudy') {
+                icon = 'images/cloudy.gif';
+            } else if (weatherMain == 'Rainy' || weatherMain == 'Rain') {
+                icon = 'images/rain.gif';
+            } else if (weatherMain == 'Haze') {
+                icon = 'images/haze.gif';
+            } else if (weatherMain == 'Mist' || weatherMain == 'Fog') {
+                icon = 'images/mist.gif';
+            }
+
+
+            res.render('weather.ejs', { weatherMain, weatherDesc, country, temp, feels_like, cityname, ndate, icon })
         })
     })
 })
-// const cityname = 'indore';
-
-// const url = `https://api.mapbox.com/geocoding/v5/mapbox.places/${cityname}.json?access_token=${mapbox_api_key}&limit=1`;
-
-// request({ url: url, json: true }, (error, response) => {
-//     const geoApiData = response.body.features[0];
-//     const lat = geoApiData.center[1];
-//     const long = geoApiData.center[0];
-
-
-//     const openweatherurl = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${long}&units=metric&appid=${openweather_Apikey}`;
-
-//     request({ url: openweatherurl, json: true }, (error, response) => {
-//         console.log(response.body);
-//     })
-// })
 
 const PORT = process.env.PORT || 8000;
 app.listen(PORT, () => {
