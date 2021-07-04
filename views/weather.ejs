@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document </title>
+    <link rel="stylesheet" href="/css/bootstrap.min.css">
+    <script src="/js/bootstrap.min.js"></script>
+    <script src="https://kit.fontawesome.com/f497ae5ec9.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/weather.css">
+</head>
+
+<body>
+    <center>
+        <div class="card mb-3" id="card">
+            <center><img src="images/cloudy.gif" class="card-img-top" alt="" style="width:200px"></center>
+            <div class="card-body">
+                <h3 class="card-title">
+
+                    <b>
+                        <i class="fas fa-street-view"></i>
+                        <%= cityname %>, <%= country %>
+                    </b>
+                </h3>
+                <p class="card-text">
+                    <%= ndate.day %> | <%= ndate.month %>
+                            <%= ndate.dateno %> | <%= ndate.hh %>:<%= ndate.mm %>
+                                        <%= ndate.shift %>
+                </p>
+
+                <h3 class="card-title" id="temp">
+                    <b>
+                        <%= temp %>&#8451;
+                    </b>
+
+                </h3>
+                <span>Feels Like : <%= feels_like %>&#8451; </span>
+
+                <!-- <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p> -->
+            </div>
+            <a class="btn btn-warning" href="/">Home Page</a>
+        </div>
+    </center>
+
+</body>
+
+</html>

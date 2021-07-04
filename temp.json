@@ -1,0 +1,41 @@
+{
+    "request": {
+        "type": "City",
+        "query": "Indore, India",
+        "language": "en",
+        "unit": "m"
+    },
+    "location": {
+        "name": "Indore",
+        "country": "India",
+        "region": "Madhya Pradesh",
+        "lat": "22.717",
+        "lon": "75.833",
+        "timezone_id": "Asia/Kolkata",
+        "localtime": "2021-07-02 17:49",
+        "localtime_epoch": 1625248140,
+        "utc_offset": "5.50"
+    },
+    "current": {
+        "observation_time": "12:19 PM",
+        "temperature": 35,
+        "weather_code": 116,
+        "weather_icons": [
+            "https://assets.weatherstack.com/images/wsymbols01_png_64/wsymbol_0002_sunny_intervals.png"
+        ],
+        "weather_descriptions": [
+            "Partly cloudy"
+        ],
+        "wind_speed": 24,
+        "wind_degree": 260,
+        "wind_dir": "W",
+        "pressure": 1002,
+        "precip": 0,
+        "humidity": 34,
+        "cloudcover": 14,
+        "feelslike": 36,
+        "uv_index": 8,
+        "visibility": 10,
+        "is_day": "yes"
+    }
+}
